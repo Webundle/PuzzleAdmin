@@ -46,7 +46,7 @@ puzzle_admin:
         resource: "@PuzzleAdminBundle/Resources/config/routing.yml"
 ```
 
-### Step 4: Configure Puzzle OAuth options
+### Step 4: Configure Puzzle OAuth options and navigation menu
 
 Then, enable management bundle via admin modules interface by adding it to the list of registered bundles in the `app/config/config.yml` file of your project under:
 
@@ -59,5 +59,16 @@ puzzle_admin:
         email:          'johndoe@exemple.com'
         time_format:    'H:m:i'
         date_format:    'd-m-Y'
+    navigation:
+        nodes:
+            dashboard:
+                label: 'admin.navigation.dashboard.title'
+                translation_domain: 'admin'
+                path: admin_homepage
+                attr:
+                    class: 'fa fa-home'
+                parent: ~
+                user_roles: ['ROLE_ADMIN']
+                tooltip: 'admin.navigation.dashboard.tooltip'
 ```
 

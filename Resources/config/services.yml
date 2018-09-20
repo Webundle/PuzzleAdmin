@@ -2,6 +2,6 @@ services:
     # Twig extension
     admin.twig.extension:
         class: Puzzle\Admin\AdminBundle\Twig\AdminExtension
-        arguments: [ '@doctrine.orm.entity_manager', "@twig", '%puzzle_admin%' ]
+        arguments: [ '@router', '@request_stack', '@security.authorization_checker', '@translator', '@cache.app', '%puzzle_admin%' ]
         tags:
-            - { name: twig.extension }
+          - { name: twig.extension }

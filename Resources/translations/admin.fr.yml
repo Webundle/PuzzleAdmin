@@ -32,9 +32,10 @@ modal:
 admin:
     title : 'Adminstration'
     navigation:
-        dashboard: 'Tableau de bord'
+        dashboard:
+            title: 'Tableau de bord'
+            tooltip: ''
         settings: 'Réglages'
-        module: 'Modules'
         access_control: 'Permissions'
         menu: 'Menus'
     content:

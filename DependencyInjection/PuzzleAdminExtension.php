@@ -26,6 +26,7 @@ class PuzzleAdminExtension extends Extension
         $loader->load('services.yml');
         
         $container->setParameter('puzzle_admin', $config);
+        $container->setParameter('puzzle_admin.navigation', $config['navigation']);
         $container->setParameter('puzzle_admin.website.name', $config['website']['name']);
         $container->setParameter('puzzle_admin.website.description', $config['website']['description']);
         $container->setParameter('puzzle_admin.website.email', $config['website']['email']);

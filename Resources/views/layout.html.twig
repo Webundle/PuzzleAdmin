@@ -66,23 +66,7 @@
                     <!-- Main navigation -->
                     <div class="sidebar-category sidebar-category-visible">
                         <div class="category-content no-padding">
-                            <ul class="navigation navigation-main navigation-accordion">
-                                <li {% if active == "dashboard" %}class="active"{% endif %}>
-                                    <a href="{{ url('admin_homepage') }}">
-                                        <i class="icon-home4"></i>
-                                        <span>{{ "admin.navigation.dashboard"|trans }}</span>
-                                    </a>
-                                </li>
-                                {{ render_menu(active, subactive) }}
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <li {% if active == "settings" %}class="active"{% endif %}>
-                                        <a href="{{ url('admin_settings') }}">
-                                            <i class="icon-cog3"></i>
-                                            <span>{{ "admin.navigation.settings"|trans }}</span>
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
+                            {{ render_navigation() }}
                         </div>
                     </div>
                 </div>
