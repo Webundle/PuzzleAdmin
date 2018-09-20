@@ -95,7 +95,21 @@
                     {% block breadcrumbelements %}{% endblock %}
                 </div>
             </div>
-            <div class="content">{% block mainpage %}{% endblock %}</div>
+            <div class="content">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success alert-dismissible show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                        {{ message }}           
+                    </div>
+                 {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger alert-dismissible show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                        {{ message }}           
+                    </div>
+                 {% endfor %}
+                {% block mainpage %}{% endblock %}
+            </div>
         </div>
     </div>
 </div>

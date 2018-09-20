@@ -1,0 +1,4 @@
+message:
+    post: 'Créé'
+    put: 'Mis à jour'
+    delete: 'Supprimé'
