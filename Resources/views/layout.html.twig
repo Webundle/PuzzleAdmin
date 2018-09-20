@@ -1,0 +1,176 @@
+{% trans_default_domain 'admin' %}
+
+{% extends "@PuzzleAdmin/base.html.twig" %}
+
+{% block stylesheets %}
+    {% stylesheets 
+        'bundles/puzzleadmin/css/icons/icomoon/styles.css'
+        'bundles/puzzleadmin/css/bootstrap.css'
+        'bundles/puzzleadmin/css/core.css'
+        'bundles/puzzleadmin/css/components.css'
+        'bundles/puzzleadmin/css/colors.css'
+
+        filter='cssrewrite' 
+        %}
+    <link rel="stylesheet" href="{{ asset_url }}" media="all" />
+    {% endstylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block header %}
+<!-- Main navbar -->
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url('admin_homepage') }}"><img src="assets/images/logo_light.png" alt=""></a>
+
+        <ul class="nav navbar-nav visible-xs-block">
+            {#<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>#}
+            <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            {% block extrasidebartoggle %}{% endblock %}
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav">
+            <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    {#{% if app.user.picture is not empty %}
+                        <img src="{{ app.user.picture }}" alt="">
+                        {% endif %}#}
+                    <i class="icon-user"></i>
+                    <span>{{ app.user.fullName|capitalize }}</span>
+                    <i class="caret"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="{{ url('admin_user_show', { 'id': app.user.id }) }}"><i class="icon-user-plus"></i>{{ "admin.profil"|trans }}</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url('admin_user_update', { 'id': app.user.id }) }}"><i class="icon-cog5"></i> {{ "admin.settings"|trans }}</a></li>
+                    <li><a href="{{ url('logout', { 'scope': 'admin' }) }}"><i class="icon-switch2"></i> {{ "admin.logout"|trans }}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-content">
+        {% block sidebar %}
+            <div class="sidebar sidebar-main">
+                <div class="sidebar-content">
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+                                <li {% if active == "dashboard" %}class="active"{% endif %}>
+                                    <a href="{{ url('admin_homepage') }}">
+                                        <i class="icon-home4"></i>
+                                        <span>{{ "admin.navigation.dashboard"|trans }}</span>
+                                    </a>
+                                </li>
+                                {{ render_menu(active, subactive) }}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li {% if active == "settings" %}class="active"{% endif %}>
+                                        <a href="{{ url('admin_settings') }}">
+                                            <i class="icon-cog3"></i>
+                                            <span>{{ "admin.navigation.settings"|trans }}</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        <div class="content-wrapper">
+            <div class="page-header page-header-default">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4>
+                            {% block mainicon %}{% endblock %}
+                            <span class="text-semibold">{% block maintitle %}{% endblock %}</span> 
+                            {% block mainsubtitle %}{% endblock %}
+                        </h4>
+                    </div>
+                    <div class="heading-elements">
+                        <div class="heading-btn-group">{% block headingelements %}{% endblock %}</div>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+                    <ul class="breadcrumb">
+                        {% block breadcrumb %}
+                            <li><a href="{{ url('admin_homepage') }}"><i class="icon-home"></i></a></li>
+                        {% endblock %}
+                    </ul>
+                    {% block breadcrumbelements %}{% endblock %}
+                </div>
+            </div>
+            <div class="content">{% block mainpage %}{% endblock %}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block modal %}
+{# default modal #}
+<div class="modal" id="showModal"></div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascripts %}
+    
+    {% if app.environment == 'prod' and app.debug == false %}
+        {% javascripts 
+            'bundles/fosjsrouting/js/router.js'
+            'bundles/puzzleadmin/js/plugins/loaders/pace.min.js'
+            'bundles/puzzleadmin/js/core/libraries/jquery.min.js'
+            'bundles/puzzleadmin/js/core/libraries/bootstrap.min.js'
+            'bundles/puzzleadmin/js/plugins/loaders/blockui.min.js'
+            'bundles/puzzleadmin/js/plugins/notifications/sweet_alert.min.js'
+            'bundles/puzzleadmin/js/plugins/forms/selects/select2.min.js'
+            'bundles/puzzleadmin/js/plugins/forms/styling/uniform.min.js'
+            'bundles/puzzleadmin/js/core/app.js'
+            'bundles/puzzleadmin/js/custom.js'
+
+            output="compiled/js/base_admin.min.js"
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% else %}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}" type="text/javascript"></script>
+        <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}" type="text/javascript"></script>
+        {% javascripts 
+            'bundles/fosjsrouting/js/router.js'
+            'bundles/puzzleadmin/js/plugins/loaders/pace.min.js'
+            'bundles/puzzleadmin/js/core/libraries/jquery.min.js'
+            'bundles/puzzleadmin/js/core/libraries/bootstrap.min.js'
+            'bundles/puzzleadmin/js/plugins/loaders/blockui.min.js'
+            'bundles/puzzleadmin/js/plugins/notifications/sweet_alert.min.js'
+            'bundles/puzzleadmin/js/plugins/forms/selects/select2.min.js'
+            'bundles/puzzleadmin/js/plugins/forms/styling/uniform.min.js'
+            'bundles/puzzleadmin/js/core/app.js'
+            'bundles/puzzleadmin/js/custom.js'
+
+            output="compiled/js/base_admin.min.js"
+            %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    
+    <script>
+        $(document).ready(function(){
+            // Action buttons
+            $("body").on('mouseenter', '.toggleable', togglize);
+            $("body").on('mouseleave', '.toggleable', untogglize);
+            // Default initialization
+            $('.select').select2({
+                minimumResultsForSearch: Infinity
+            });
+        });
+
+</script>
+{% endblock %}

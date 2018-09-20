@@ -1,0 +1,31 @@
+{% trans_default_domain 'admin' %}
+
+{% set active = "dashboard" %}
+
+{% set subactive = "dashboard" %}
+
+{% extends '@PuzzleAdmin/layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ "admin.content.dashboard"|trans }}{% endblock %}
+
+{% block mainicon %}<i class="icon-home4 position-left"></i>{% endblock %}
+{% block maintitle %}{{ "admin.title"|trans }}{% endblock %}
+{% block mainsubtitle %}{{ "admin.content.dashboard"|trans }}{% endblock %}
+
+{% block mainpage %}
+<div class="content">
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/plugins/visualization/d3/d3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/plugins/forms/styling/switchery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/puzzleadmin/js/pages/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% trans_default_domain 'admin' %}
+
+{% extends '@PuzzleAdmin/layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        'bundles/puzzleadmin/js/plugins/tables/datatables/datatables.min.js'
+        'bundles/puzzleadmin/js/pages/datatables_data_sources.js'
+
+        output="compiled/js/base_admin_list.min.js"
+        %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(document).ready(function(){
+            // Table
+            $('.datatable').DataTable({
+                destroy: true,
+                responsive : true,
+                sPaginationType : "full_numbers",
+                language : {
+                    url: "{{ asset('bundles/puzzleadmin/js/plugins/tables/datatables/lang/dataTables.'~app.request.locale ~'.json') }}"
+                }
+            });
+
+            // Enable Select2 select for the length option
+            $('.datatable select').select2({
+                minimumResultsForSearch: Infinity,
+                width: 'auto'
+            });
+        });
+
+    </script>
+{% endblock %}

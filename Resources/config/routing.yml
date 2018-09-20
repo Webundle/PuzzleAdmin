@@ -1,0 +1,7 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: 'PuzzleAdminBundle:Default:index' }
+
+admin_settings:
+    path:     /settings
+    defaults: { _controller: 'PuzzleAdminBundle:Default:settings' }

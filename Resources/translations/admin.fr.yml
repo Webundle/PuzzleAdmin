@@ -1,0 +1,71 @@
+locale:
+    fr: 'Français'
+    en: 'Anglais'
+    
+button:
+    add: 'Ajouter'
+    show: 'Voir plus'
+    update: 'Modifier'
+    delete: 'Supprimer'
+    delete_list: 'Supprimer la sélection'
+    remove: 'Retirer'
+    remove_list: 'Retirer la sélection'
+    select_all: 'Tout sélectionner'
+    cancel: 'Annuler'
+    close: 'Fermer'
+    save: 'Enregistrer'
+    back: 'Retour'
+    copy: 'Copier vers'
+    move: 'Déplacer vers'
+    download: 'Télécharger'
+    import: 'Importer'
+    export: 'Exporter'
+    translate: 'Traduire'
+    logout: 'Deconnexion'
+    action: 'Actions'
+
+modal:
+    body:
+        delete: 'Etes-vous sur de vouloir supprimer '
+        remove: 'Etes-vous sur de vouloir retirer '
+#Admin
+admin:
+    title : 'Adminstration'
+    navigation:
+        dashboard: 'Tableau de bord'
+        settings: 'Réglages'
+        module: 'Modules'
+        access_control: 'Permissions'
+        menu: 'Menus'
+    content:
+        dashboard: 'Tableau de bord'
+        settings: 'Réglages'
+        module: 'Modules'
+        access_control: 'Permissions'
+        module:
+            list: 'Liste des modules'
+            remove: 'Desinstaller le module'
+            access_control:
+            list: 'Liste des permissions'
+        menu:
+            list: 'Liste des menus'
+            create: 'Nouveau menu'
+            update: 'Modifier un menu'
+            show: 'Détails du menu'
+            remove: ' Etes-vous sur de vouloir supprimer ce menu'
+            remove_list: ' Etes-vous sur de vouloir supprimer la liste de menus'
+        menuItem:
+            create: 'Ajouter un élément au menu'
+            update: 'Modifier un élément du menu'
+            remove: ' Etes-vous sur de vouloir supprimer ce élément du menu'
+            remove_list: ' Etes-vous sur de vouloir supprimer la liste d''éléement du menu'
+        property:
+            menu:
+                name: 'Nom'
+                menuItem:
+                name: 'Nom'
+                parent: 'Parent'
+                position: 'Position'
+                page: 'Page associée'
+                parent: 'Parent'
+     

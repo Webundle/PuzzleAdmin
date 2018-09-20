@@ -1,0 +1,29 @@
+{% trans_default_domain 'admin' %}
+
+{% extends '@PuzzleAdmin/layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        'bundles/puzzleadmin/js/plugins/forms/styling/uniform.min.js'
+        'bundles/puzzleadmin/js/plugins/forms/styling/switchery.min.js'
+        'bundles/puzzleadmin/js/plugins/forms/styling/switch.min.js'
+        'bundles/puzzleadmin/js/pages/form_checkboxes_radios.js'
+        'bundles/puzzleadmin/js/plugins/uploaders/fileinput/plugins/purify.min.js'
+        'bundles/puzzleadmin/js/plugins/uploaders/fileinput/plugins/sortable.min.js'
+        'bundles/puzzleadmin/js/plugins/uploaders/fileinput/fileinput.min.js'
+        'bundles/puzzleadmin/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js'
+        'bundles/puzzleadmin/js/plugins/forms/tags/tagsinput.min.js'
+        'bundles/puzzleadmin/js/plugins/forms/tags/tokenfield.min.js'
+        'bundles/puzzleadmin/js/plugins/ui/prism.min.js'
+        'bundles/puzzleadmin/js/pages/form_tags_input.js'
+        'bundles/puzzleadmin/js/pages/form_inputs.js'
+        'bundles/puzzleadmin/js/plugins/editors/summernote/summernote.min.js'
+        'bundles/puzzleadmin/js/pages/editor_summernote.js'
+        
+        output="compiled/js/base_admin_editor.min.js"
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script src="{{ asset('bundles/puzzleadmin/js/plugins/uploaders/fileinput/lang/'~app.request.get('_locale')|default('fr')~'.js') }}"></script>
+{% endblock %}

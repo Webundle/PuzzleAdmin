@@ -1,0 +1,3 @@
+{% for bundleName in bundleNames %}
+    {% include bundleName~"::navigation.html.twig" with {'active': active, 'subactive': subactive} %}
+{% endfor %}
