@@ -89,7 +89,7 @@
                 <div class="breadcrumb-line">
                     <ul class="breadcrumb">
                         {% block breadcrumb %}
-                            <li><a href="{{ url('admin_homepage') }}"><i class="icon-home"></i></a></li>
+                            <li><a href="{{ url('admin_homepage') }}"><i class="icon-home"></i> {{ "admin.dashboard.title"|trans }}</a></li>
                         {% endblock %}
                     </ul>
                     {% block breadcrumbelements %}{% endblock %}

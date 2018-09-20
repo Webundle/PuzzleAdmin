@@ -111,11 +111,24 @@ class AdminExtension extends \Twig_Extension
 			foreach ($node['children'] as $key => $nodeItem) {
 				if (!empty($nodeItem['children'])) {
 					$children .= $this->createMenuNode($key, $nodeItem, $currentPath);
+					if (false === $toActivate) {
+					    foreach ($nodeItem['children'] as $nodeChildren) {
+					        $subPaths = $nodeChildren['sub_paths'] ?? [];
+					        if ($currentPath === $nodeChildren['path'] || true === in_array($currentPath, $subPaths)) {
+					            $toActivate = true;
+					            break;
+					        }
+					    }
+					}
 				} else {
 					$children .= $this->createMenuNodeItem($nodeItem, $currentPath);
 					
 					if (false === $toActivate) {
-						$toActivate = $currentPath === $nodeItem['path'];
+					    $toActivate = $currentPath === $nodeItem['path'];
+					}
+					
+					if (false === $toActivate && !empty($nodeItem['sub_paths'])) {
+					    $toActivate = true === in_array($currentPath, $nodeItem['sub_paths']);
 					}
 				}
 			}
@@ -137,7 +150,7 @@ class AdminExtension extends \Twig_Extension
 			$liAttr = ' class="' . ($toActivate ? 'active' : '') . '"';
 			$path = '#';
 		} else {
-			$liAttr = $currentPath === $nodeItem['path'] ? ' class="active"' : '';
+		    $liAttr = ($currentPath === $nodeItem['path'] || in_array($currentPath, $nodeItem['sub_paths'])) ? ' class="active"' : '';
 			$path = $nodeItem['path'] ? $this->router->generate($nodeItem['path']) : '#';
 		}
 		

@@ -31,13 +31,12 @@ modal:
 #Admin
 admin:
     title : 'Adminstration'
-    navigation:
-        dashboard:
-            title: 'Tableau de bord'
-            tooltip: ''
-        settings: 'Réglages'
-        access_control: 'Permissions'
-        menu: 'Menus'
+    dashboard:
+        title: 'Tableau de bord'
+        tooltip: ''
+    settings: 'Réglages'
+    access_control: 'Permissions'
+    menu: 'Menus'
     content:
         dashboard: 'Tableau de bord'
         settings: 'Réglages'
