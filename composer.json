@@ -28,11 +28,10 @@
 		"webundle/puzzle-connect" : "^1.0"
 	},
 	"autoload" : {
-		"psr-0" : {
-			"Webundle\\Puzzle\\Admin\\AdminBundle" : ""
+		"psr-4" : {
+			"Puzzle\\Admin\\AdminBundle\\" : ""
 		}
 	},
-	"target-dir" : "Webundle/Puzzle/Admin/AdminBundle",
 	"extra" : {
 		"branch-alias" : {
 			"dev-master" : "1.0-dev"
